@@ -1,0 +1,18 @@
+.popup__form-about-me {
+  padding: 0;
+  margin: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 36px;
+  margin-bottom: 48px;
+  font-family: "Inter", sans-serif;
+  color: black;
+}
+
+@media screen and (max-width: 700px) {
+  .popup__form-about-me {
+    margin-left: 22px;
+    margin-bottom: 45px;
+  }
+}

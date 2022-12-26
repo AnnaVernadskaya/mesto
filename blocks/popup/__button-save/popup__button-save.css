@@ -1,0 +1,26 @@
+.popup__button-save {
+  padding: 0;
+  margin: 0;
+  background-color: #000000;
+  color: #FFFFFF;
+  min-width: 358px;
+  min-height: 50px;
+  margin-bottom: 37px;
+  margin-left: 36px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  font-family: "Inter", sans-serif;
+  border: none;
+}
+
+@media screen and (max-width: 700px) {
+  .popup__button-save {
+    min-width: 238px;
+    min-height: 46px;
+    margin-bottom: 25px;
+    margin-left: 22px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

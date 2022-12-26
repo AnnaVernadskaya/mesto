@@ -1,0 +1,25 @@
+.gallery__button-like {
+  background-image: url(../../../images/like.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  min-height: 19px;
+  min-width: 22px;
+  padding-bottom: 30px;
+}
+
+.gallery__button-like:hover {
+  background-image: url(../../../images/like-hover.svg);
+}
+
+.gallery__button-like:active {
+  background-image: url(../../../images/like-active.svg);
+}
