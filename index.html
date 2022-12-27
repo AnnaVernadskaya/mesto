@@ -21,13 +21,13 @@
           <div class="profile__info-text">
             <div class="profile__main-info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__button-edit">
+              <button class="profile__button-edit" type="button">
               </button>
             </div>
             <p class="profile__about-me">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__button-plus"></button>
+        <button class="profile__button-plus" type="button"></button>
       </section>
       <!--ГАЛЕРЕЯ-->
       <section class="gallery">
@@ -40,7 +40,7 @@
             >
             <div class="gallery__card-info">
               <h2 class="gallery__place">Карачаевск</h2>
-              <button class="gallery__button-like"></button>
+              <button class="gallery__button-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__card">
@@ -51,7 +51,7 @@
             >
             <div class="gallery__card-info">
               <h2 class="gallery__place">Гора Эльбрус</h2>
-              <button class="gallery__button-like"></button>
+              <button class="gallery__button-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__card">
@@ -62,7 +62,7 @@
             >
             <div class="gallery__card-info">
               <h2 class="gallery__place">Домбай</h2>
-              <button class="gallery__button-like"></button>
+              <button class="gallery__button-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__card">
@@ -73,7 +73,7 @@
             >
             <div class="gallery__card-info">
               <h2 class="gallery__place">Гора Эльбрус</h2>
-              <button class="gallery__button-like"></button>
+              <button class="gallery__button-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__card">
@@ -84,7 +84,7 @@
             >
             <div class="gallery__card-info">
               <h2 class="gallery__place">Домбай</h2>
-              <button class="gallery__button-like"></button>
+              <button class="gallery__button-like" type="button"></button>
             </div>
           </li>
           <li class="gallery__card">
@@ -95,7 +95,7 @@
             >
             <div class="gallery__card-info">
               <h2 class="gallery__place">Карачаево-Черкессия</h2>
-              <button class="gallery__button-like"></button>
+              <button class="gallery__button-like" type="button"></button>
             </div>
           </li>
         </ul>
@@ -103,27 +103,29 @@
     </main>
       <!--ПОДВАЛ-->
       <footer class="footer">
-        <h2 class="footer__logo">&copy;&nbsp;2020&nbsp;Mesto&nbsp;Russia</h2>
+        <p class="footer__text">&copy;&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
       </footer>
       <!--ПОПАП-->
       <section class="popup">
         <div class="popup__container">
-          <button class="popup__close"></button>
+          <button class="popup__close" type="button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" action="#" method="post">
+          <form class="popup__form" action="#" method="post" name="formElement">
             <input
-              class="popup__form-username popup__input"
+              class="popup__input_form_username popup__input"
               type="text"
               name="username"
               required
-            >
+              placeholder="имя"
+            >popup__form-about-me
             <input
-              class="popup__form-about-me popup__input"
+              class="popup__input_form_aboutme popup__input"
               type="text"
               name="about-me"
               required
+              placeholder="о себе"
             >
-            <button class="popup__button-save">Сохранить</button>
+            <button class="popup__button-save" type="submit">Сохранить</button>
           </form>
         </div>
       </section>

@@ -34,5 +34,6 @@
   .profile__button-plus {
     min-width: 282px;
     margin: 0 auto;
+    background-size: 16px;
   }
 }

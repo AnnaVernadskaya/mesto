@@ -1,7 +1,6 @@
 .header {
   box-sizing: border-box;
   max-width: 880px;
-  min-height: 74px;
   display: flex;
   width: calc(100% - 2 * 200px);
   margin: 0 auto;
@@ -13,7 +12,6 @@
 @media screen and (max-width: 700px) {
   .header {
     max-width: 320px;
-    min-height: 56px;
     width: 100%;
     padding-top: 28px;
     padding-left: 27px;

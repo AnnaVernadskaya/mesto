@@ -3,4 +3,6 @@
   max-width: 282px;
   list-style-type: none;
   border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
 }

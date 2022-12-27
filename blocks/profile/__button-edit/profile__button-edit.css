@@ -10,6 +10,7 @@
   margin-left: 18px;
   background-color: transparent;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .profile__button-edit:hover {
@@ -20,6 +21,7 @@
   .profile__button-edit {
     height: 20px;
     width: 20px;
+    margin-top: 0;
   }
 }
 
@@ -28,5 +30,6 @@
     height: 18px;
     width: 18px;
     margin-left: 10px;
+    background-size: 7.5px;
   }
 }
