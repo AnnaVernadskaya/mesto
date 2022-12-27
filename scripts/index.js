@@ -8,8 +8,8 @@ const popupOpenButtonElement = document.querySelector('.profile__button-edit');
 // Находим форму в DOM
 const formElement = document.querySelector('.popup__form');
 // Находим поля формы в DOM
-const usernameInput = formElement.querySelector('.popup__input_form_username');
-const jobInput = formElement.querySelector('.popup__input_form_aboutme');
+const usernameInput = formElement.querySelector('.popup__input_type_name');
+const jobInput = formElement.querySelector('.popup__input_type_job');
 // Выберите элементы, куда должны быть вставлены значения полей
 const profileName = document.querySelector('.profile__name');
 const profileAboutMe = document.querySelector('.profile__about-me');

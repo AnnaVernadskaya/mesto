@@ -2,7 +2,6 @@
   max-width: 880px;
   width: calc(100% - 2 * 200px);
   margin: 0 auto;
-  min-height: 18px;
   padding-top: 66px;
   padding-bottom: 60px;
 }
