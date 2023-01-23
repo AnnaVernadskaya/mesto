@@ -15,9 +15,5 @@
 }
 
 .gallery__button-like:hover {
-  background-image: url(../../../images/like-hover.svg);
-}
-
-.gallery__button-like:active {
-  background-image: url(../../../images/like-active.svg);
+  opacity: 0.6;
 }

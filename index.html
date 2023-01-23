@@ -32,101 +32,71 @@
       <!--ГАЛЕРЕЯ-->
       <section class="gallery">
         <ul class="gallery__cards">
-          <li class="gallery__card">
-            <img
-              class="gallery__img"
-              src="./images/Karachaevsk.jpg"
-              alt="карачаевск"
-            >
-            <div class="gallery__card-info">
-              <h2 class="gallery__place">Карачаевск</h2>
-              <button class="gallery__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card">
-            <img
-              class="gallery__img"
-              src="./images/elbrus.jpg"
-              alt="гора эльбрус"
-            >
-            <div class="gallery__card-info">
-              <h2 class="gallery__place">Гора Эльбрус</h2>
-              <button class="gallery__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card">
-            <img
-              class="gallery__img"
-              src="./images/dombai.jpg"
-              alt="домбай"
-            >
-            <div class="gallery__card-info">
-              <h2 class="gallery__place">Домбай</h2>
-              <button class="gallery__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card">
-            <img
-              class="gallery__img"
-              src="./images/elbrus.jpg"
-              alt="гора Эльбрус"
-            >
-            <div class="gallery__card-info">
-              <h2 class="gallery__place">Гора Эльбрус</h2>
-              <button class="gallery__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card">
-            <img
-              class="gallery__img"
-              src="./images/dombai.jpg"
-              alt="Домбай"
-            >
-            <div class="gallery__card-info">
-              <h2 class="gallery__place">Домбай</h2>
-              <button class="gallery__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="gallery__card">
-            <img
-              class="gallery__img"
-              src="./images/Karachaevsk.jpg"
-              alt="карачаевск"
-            >
-            <div class="gallery__card-info">
-              <h2 class="gallery__place">Карачаево-Черкессия</h2>
-              <button class="gallery__button-like" type="button"></button>
-            </div>
-          </li>
         </ul>
       </section>
-    </main>
+      <!--ТЕМПЛЕЙТ-->
+      <template id="galleryCards">
+        <li class="gallery__card">
+          <button class="gallery__delete-card" type="button"></button>
+          <img class="gallery__img" src="" alt="">
+          <div class="gallery__card-info">
+            <h2 class="gallery__place"></h2>
+            <button class="gallery__button-like" type="button"></button>
+          </div>
+        </li>
+      </template>
       <!--ПОДВАЛ-->
       <footer class="footer">
         <p class="footer__text">&copy;&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
       </footer>
-      <!--ПОПАП-->
-      <section class="popup">
+      <!--ПОПАП профиль-->
+      <section class="popup popup_section_profile">
         <div class="popup__container">
-          <button class="popup__close" type="button"></button>
+          <button class="popup__close popup__close-profile" type="button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" action="#" method="post" name="formElement">
-            <input
-              class="popup__input_type_name popup__input"
-              type="text"
-              name="username"
-              required
-              placeholder="имя"
-            >popup__form-about-me
-            <input
-              class="popup__input_type_job popup__input"
-              type="text"
-              name="about-me"
-              required
-              placeholder="о себе"
-            >
-            <button class="popup__button-save" type="submit">Сохранить</button>
+          <form class="popup__form popup__form-profile" action="#" method="post" name="formElement">
+            <input class="popup__input_type_name popup__input"
+            id="popup-input-name"
+            type="text"
+            name="username"
+            required placeholder="Имя">
+            <input class="popup__input_type_job popup__input"
+            id="popup-input-job"
+            type="text"
+            name="about-me"
+            required placeholder="О себе">
+            <button class="popup__button-save popup__button-save-profile" type="submit">Сохранить</button>
           </form>
+        </div>
+      </section>
+      <!--ПОПАП карточки-->
+      <section class="popup popup_section_cards"> <!--ДС popup_section_profile-->
+        <div class="popup__container">
+          <button class="popup__close popup__close-cards" type="button"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form" action="#" method="post" name="formElement" id="popup-form-cards">
+            <input class="popup__input_type_place popup__input"
+            id="popup-input-place"
+            type="text"
+            name="username"
+            required placeholder="Название">
+            <input class="popup__input_type_link popup__input"
+            id="popup-input-link"
+            type="text"
+            name="about-me"
+            required placeholder="Ссылка на картинку">
+            <button class="popup__button-save" type="submit">Создать</button>
+          </form>
+        </div>
+      </section>
+      <!--ПОПАП фото-->
+      <section class="popup popup__photo popup_section_photo">
+        <div class="popup__photo-container">
+          <figure class="popup__place">
+            <button class="popup__close popup__close-photo" type="button"></button>
+            <img class="popup__image" src="" alt="">
+            <figcaption class="popup__figcaption"></figcaption>
+          </figure>
         </div>
       </section>
     </div>

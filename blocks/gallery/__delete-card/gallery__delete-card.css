@@ -1,0 +1,17 @@
+.gallery__delete-card {
+  background-image: url(../../../images/Delete.svg);
+  background-position: center;
+  min-height: 19px;
+  min-width: 18px;
+  border: none;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.gallery__delete-card:hover {
+  opacity: 0.6;
+}

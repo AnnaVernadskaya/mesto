@@ -1,0 +1,7 @@
+.popup__place {
+  margin: 0;
+  margin: auto;
+  position: relative;
+  max-width: 70%;
+  max-height: 70%;
+}
