@@ -40,7 +40,7 @@
         <template id="galleryCards">
           <li class="gallery__card">
             <button class="gallery__delete-card" type="button"></button>
-            <img class="gallery__img" src="#" alt="">
+            <img class="gallery__img" src="#" alt="" />
             <div class="gallery__card-info">
               <h2 class="gallery__place"></h2>
               <button class="gallery__button-like" type="button"></button>
@@ -52,6 +52,7 @@
       <footer class="footer">
         <p class="footer__text">&copy;&nbsp;2020&nbsp;Mesto&nbsp;Russia</p>
       </footer>
+
       <!--ПОПАП профиль-->
       <section class="popup popup_section_profile">
         <div class="popup__container">
@@ -65,6 +66,7 @@
             action="#"
             method="post"
             name="profileForm"
+            novalidate
           >
             <input
               class="popup__input_type_name popup__input"
@@ -73,7 +75,12 @@
               name="username"
               required
               placeholder="Имя"
+              minlength="2"
+              maxlength="40"
+              required
             >
+            <span class="popup__input-error" id="popup-input-name-error"></span>
+
             <input
               class="popup__input_type_job popup__input"
               id="popup-input-job"
@@ -81,7 +88,12 @@
               name="about-me"
               required
               placeholder="О себе"
+              minlength="2"
+              maxlength="200"
+              required
             >
+            <span class="popup__input-error" id="popup-input-job-error"></span>
+
             <button
               class="popup__button-save popup__button-save-profile"
               type="submit"
@@ -91,6 +103,7 @@
           </form>
         </div>
       </section>
+
       <!--ПОПАП карточки-->
       <section class="popup popup_section_cards">
         <!--ДС popup_section_profile-->
@@ -100,33 +113,45 @@
             type="button"
           ></button>
           <h2 class="popup__title">Новое место</h2>
+
           <form
             class="popup__form"
             action="#"
             method="post"
             name="cardForm"
             id="popup-form-cards"
+            novalidate
           >
             <input
               class="popup__input_type_place popup__input"
               id="popup-input-place"
               type="text"
-              name="username"
+              name="placename"
               required
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
             >
+            <span
+              class="popup__input-error"
+              id="popup-input-place-error"></span>
+
             <input
               class="popup__input_type_link popup__input"
               id="popup-input-link"
-              type="text"
+              type="url"
               name="about-me"
               required
               placeholder="Ссылка на картинку"
+              required
             >
+            <span class="popup__input-error" id="popup-input-link-error"></span>
             <button class="popup__button-save" type="submit">Создать</button>
           </form>
         </div>
       </section>
+
       <!--ПОПАП фото-->
       <section class="popup popup_section_photo">
         <div class="popup__photo-container">
@@ -141,6 +166,8 @@
         </div>
       </section>
     </div>
+
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

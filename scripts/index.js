@@ -152,9 +152,6 @@ const renderCard = (dataCard) => {
 //добавление новой карточки через попап
 // сохранение изменений в форме профиля
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-
 function handleCardSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
@@ -179,3 +176,28 @@ initialCards.forEach(renderCard);
 //initialCards.forEach((dataCard) => {
 // renderCard(dataCard);
 //});
+
+// закрытие попапа по оверлею
+const closePopupByClickOnOverlay = function (evt) {
+  console.log(evt.target);
+  console.log(evt.currentTarget);
+
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target.closest(".popup"));
+  }
+};
+
+popupProfile.addEventListener("click", closePopupByClickOnOverlay);
+popupCards.addEventListener("click", closePopupByClickOnOverlay);
+popupPhoto.addEventListener("click", closePopupByClickOnOverlay);
+
+//закрытие попапа на esc
+function closePopupByEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(popupProfile);
+    closePopup(popupPhoto);
+    closePopup(popupCards);
+  }
+}
+
+document.addEventListener("keydown", closePopupByEsc);
