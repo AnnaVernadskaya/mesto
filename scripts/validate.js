@@ -63,7 +63,7 @@ function toggleButton(form, config) {
 
   //если форма невалидна - дизейбл включить
   buttonSubmit.disabled = !isFormValid;
-  buttonSubmit.classList.toggle("popup__button-save_disabled", !isFormValid);
+  buttonSubmit.classList.toggle(config.buttonDisabledClass, !isFormValid);
 }
 
 //добавим слушатели на инпут - передаём форму и объект-в нём находим все инпуты

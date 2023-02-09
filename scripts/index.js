@@ -29,38 +29,13 @@ const gallery = document.querySelector(".gallery__cards");
 const formCardPopup = document.forms["cardForm"];
 const inputPlace = document.querySelector("#popup-input-place");
 const inputLink = document.querySelector("#popup-input-link");
-//карточки
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 //функция, добавляющая модификатор в html -открывание попапа
 //общая функция
 const openPopup = function (popup) {
   popup.classList.add("popup_is-opened");
+
+  document.addEventListener("keydown", closePopupByEsc);
 };
 
 //открываем попап профиль
@@ -79,6 +54,8 @@ popupCardsOpenButton.addEventListener("click", function () {
 // находим все крестики проекта по универсальному селектору closeButtons=.popup__close
 const closePopup = function (popup) {
   popup.classList.remove("popup_is-opened");
+
+  document.removeEventListener("keydown", closePopupByEsc);
 };
 
 closeButtons.forEach((button) => {
@@ -156,6 +133,9 @@ function handleCardSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
 
+  evt.submitter.disabled = true;
+  evt.submitter.classList.add('popup__button-save_disabled');
+
   //наполняем содержимым из инпутов
   renderCard({ name: inputPlace.value, link: inputLink.value });
 
@@ -191,13 +171,28 @@ popupProfile.addEventListener("click", closePopupByClickOnOverlay);
 popupCards.addEventListener("click", closePopupByClickOnOverlay);
 popupPhoto.addEventListener("click", closePopupByClickOnOverlay);
 
-//закрытие попапа на esc
+
+
+//закрытие попапа на esc - первый вариант
 function closePopupByEsc(evt) {
   if (evt.key === "Escape") {
-    closePopup(popupProfile);
-    closePopup(popupPhoto);
-    closePopup(popupCards);
+    closePopup(document.querySelector('.popup_is-opened'));
   }
 }
 
-document.addEventListener("keydown", closePopupByEsc);
+
+
+//закрытие попапа на esc - первый вариант
+//function closePopupByEsc(evt) {
+  //if (evt.key === "Escape") {
+    //closePopup(popupProfile);
+    //closePopup(popupPhoto);
+    //closePopup(popupCards);
+  //}
+//}
+
+//document.addEventListener("keydown", closePopupByEsc);
+
+
+
+
