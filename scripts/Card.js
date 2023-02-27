@@ -21,11 +21,15 @@ _getTemplate() {
   const cardElement = document
   .querySelector('#galleryCards')
   .content
+  .querySelector('.gallery__card')
   .cloneNode(true);
 
 //вернём ДОМ-элемент карточки
 return cardElement;
 }
+
+
+
 
 // метод generateCard подготовит карточку к публикации
 //он добавит данные в разметку
@@ -49,6 +53,8 @@ generateCard() {
 
 //лайк
   _setEventListeners() {
+    console.log(this._element.querySelector('.gallery__button-like'));
+
     this._element.querySelector('.gallery__button-like').addEventListener('click', () => {
       this._toggleButtonLike();
     });
@@ -56,10 +62,14 @@ generateCard() {
   }
 
   _toggleButtonLike() {
-    this._element.querySelector('.gallery__button-like').classList.toggle('gallery__button-like_active')
+    console.log(this._element.querySelector('.gallery__button-like'));
+    console.log(this._element);
+
+    this._element.querySelector('.gallery__button-like').classList.toggle('gallery__button-like_active');
   }
 
 }
+
 
 
 initialCards.forEach((item) => {
