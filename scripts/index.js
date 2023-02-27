@@ -1,3 +1,7 @@
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import { initialCards } from "./constants.js";
+
 //ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА
 //выбираем попапы - профиль, карточки, фото
 const popupProfile = document.querySelector(".popup_section_profile");
@@ -83,6 +87,15 @@ function handleProfileFormSubmit(evt) {
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 formProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 
+
+
+
+
+
+
+
+/*
+
 //пишем функцию, которая будет создавать карточку
 const createCard = (dataCard) => {
   //клонируем содержимое тега темплейт
@@ -126,6 +139,8 @@ const renderCard = (dataCard) => {
   gallery.prepend(createCard(dataCard));
 };
 
+*/
+
 //добавление новой карточки через попап
 // сохранение изменений в форме профиля
 
@@ -150,12 +165,19 @@ function handleCardSubmit(evt) {
 // он будет следить за событием “submit” - «отправка»
 formCardPopup.addEventListener("submit", handleCardSubmit);
 
+
+
+/*
 //функция, которая переберает массив и сохдает на основе его карточки
 initialCards.forEach(renderCard);
 
 //initialCards.forEach((dataCard) => {
 // renderCard(dataCard);
 //});
+*/
+
+
+
 
 // закрытие попапа по оверлею
 const closePopupByClickOnOverlay = function (evt) {
@@ -173,26 +195,10 @@ popupPhoto.addEventListener("click", closePopupByClickOnOverlay);
 
 
 
-//закрытие попапа на esc - первый вариант
+//закрытие попапа на esc
 function closePopupByEsc(evt) {
   if (evt.key === "Escape") {
     closePopup(document.querySelector('.popup_is-opened'));
   }
 }
-
-
-
-//закрытие попапа на esc - первый вариант
-//function closePopupByEsc(evt) {
-  //if (evt.key === "Escape") {
-    //closePopup(popupProfile);
-    //closePopup(popupPhoto);
-    //closePopup(popupCards);
-  //}
-//}
-
-//document.addEventListener("keydown", closePopupByEsc);
-
-
-
 
