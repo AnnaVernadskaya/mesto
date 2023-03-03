@@ -2,6 +2,14 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { initialCards } from "./constants.js";
 
+const formValidationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  inputErrorClass: "popup__input_type_error",
+  buttonSelector: ".popup__button-save",
+  buttonDisabledClass: "popup__button-save_disabled",
+};
+
 //ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА
 //выбираем попапы - профиль, карточки, фото
 const popupProfile = document.querySelector(".popup_section_profile");
@@ -24,15 +32,24 @@ const popupPhotoFiqcaption = popupPhoto.querySelector(".popup__figcaption");
 //находим все закрывающие кнопки-крестики
 const closeButtons = document.querySelectorAll(".popup__close");
 // получаем элемент темплейт
-//const galleryCardsTemplate = document.querySelector('#galleryCards');
-//чтобы получить содержимое темплейт, нужно обратиться к его св-ву контент
-const galleryCardsTemplate = document.querySelector("#galleryCards").content;
+
 //делаем константу галлереи, куда добавить карточки
 const gallery = document.querySelector(".gallery__cards");
 //попап добавления новой карточки и инпуты в форме
 const formCardPopup = document.forms["cardForm"];
 const inputPlace = document.querySelector("#popup-input-place");
 const inputLink = document.querySelector("#popup-input-link");
+
+//функция для открытия попапа с фото
+function openPopupPhoto(name, link) {
+  document.querySelector(".popup__image").src = link;
+  document.querySelector(".popup__image").alt = name;
+  document.querySelector(".popup__figcaption").textContent = name;
+
+  openPopup(popupPhoto);
+}
+
+export { openPopupPhoto };
 
 //функция, добавляющая модификатор в html -открывание попапа
 //общая функция
@@ -87,59 +104,31 @@ function handleProfileFormSubmit(evt) {
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 formProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 
+// закрытие попапа по оверлею
+const closePopupByClickOnOverlay = function (evt) {
+  console.log(evt.target);
+  console.log(evt.currentTarget);
 
-
-
-
-
-
-
-/*
-
-//пишем функцию, которая будет создавать карточку
-const createCard = (dataCard) => {
-  //клонируем содержимое тега темплейт
-  const card = galleryCardsTemplate.cloneNode(true);
-  //наполняем содержимым
-  const imgPopup = card.querySelector(".gallery__img");
-  const place = card.querySelector(".gallery__place");
-  place.textContent = dataCard.name;
-  imgPopup.src = dataCard.link;
-  imgPopup.alt = dataCard.name;
-
-  //удаление карточки- функция
-  const deleteCard = (evt) => {
-    evt.target.closest(".gallery__card").remove();
-  };
-  //удадение карточки - слушатель событий
-  const buttonDeleteCard = card.querySelector(".gallery__delete-card");
-  buttonDeleteCard.addEventListener("click", deleteCard);
-
-  //функция лайка
-  const buttonToggleLike = card.querySelector(".gallery__button-like");
-
-  buttonToggleLike.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("gallery__button-like_active");
-  });
-
-  //открытие попапа - большое фото
-  imgPopup.addEventListener("click", function () {
-    (popupPhotoImg.src = dataCard.link),
-      (popupPhotoImg.alt = dataCard.name),
-      (popupPhotoFiqcaption.textContent = dataCard.name);
-
-    openPopup(popupPhoto);
-  });
-
-  return card;
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target.closest(".popup"));
+  }
 };
+
+popupProfile.addEventListener("click", closePopupByClickOnOverlay);
+popupCards.addEventListener("click", closePopupByClickOnOverlay);
+popupPhoto.addEventListener("click", closePopupByClickOnOverlay);
+
+//закрытие попапа на esc
+function closePopupByEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector(".popup_is-opened"));
+  }
+}
 
 // функция, которая будет рендерить карточкуна странице
-const renderCard = (dataCard) => {
-  gallery.prepend(createCard(dataCard));
+const renderCard = (item) => {
+  gallery.prepend(addCard(item));
 };
-
-*/
 
 //добавление новой карточки через попап
 // сохранение изменений в форме профиля
@@ -149,7 +138,7 @@ function handleCardSubmit(evt) {
   // Так мы можем определить свою логику отправки.
 
   evt.submitter.disabled = true;
-  evt.submitter.classList.add('popup__button-save_disabled');
+  evt.submitter.classList.add("popup__button-save_disabled");
 
   //наполняем содержимым из инпутов
   renderCard({ name: inputPlace.value, link: inputLink.value });
@@ -165,40 +154,27 @@ function handleCardSubmit(evt) {
 // он будет следить за событием “submit” - «отправка»
 formCardPopup.addEventListener("submit", handleCardSubmit);
 
+//экзепмляры класса валидации для каждой формы
+const ValidationFormProfile = new FormValidator(
+  formValidationConfig,
+  formProfilePopup
+);
+ValidationFormProfile.enableValidation();
 
+const ValidationFormCards = new FormValidator(
+  formValidationConfig,
+  formCardPopup
+);
+ValidationFormCards.enableValidation();
 
-/*
-//функция, которая переберает массив и сохдает на основе его карточки
-initialCards.forEach(renderCard);
+initialCards.forEach((item) => {
+  // Добавляем в DOM
+  document.querySelector(".gallery__cards").append(addCard(item));
+});
 
-//initialCards.forEach((dataCard) => {
-// renderCard(dataCard);
-//});
-*/
-
-
-
-
-// закрытие попапа по оверлею
-const closePopupByClickOnOverlay = function (evt) {
-  console.log(evt.target);
-  console.log(evt.currentTarget);
-
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target.closest(".popup"));
-  }
-};
-
-popupProfile.addEventListener("click", closePopupByClickOnOverlay);
-popupCards.addEventListener("click", closePopupByClickOnOverlay);
-popupPhoto.addEventListener("click", closePopupByClickOnOverlay);
-
-
-
-//закрытие попапа на esc
-function closePopupByEsc(evt) {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector('.popup_is-opened'));
-  }
+function addCard(item) {
+  //Создадим экземпляр карточки
+  const card = new Card(item.name, item.link, openPopupPhoto);
+  //Создаём карточку и возвращаем наружу
+  return card.generateCard();
 }
-
