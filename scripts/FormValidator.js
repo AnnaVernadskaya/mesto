@@ -23,8 +23,6 @@ export class FormValidator {
 
   // находит все формы, перебирает их, включает валидацию
   _enableFormValidation() {
-    //слушатель, вызывает функцию, отменяющую стандартную отправку формы
-    this._formElement.addEventListener("submit", this._disableSubmit);
 
     //событие инпут у формы
     this._formElement.addEventListener("input", () => {
@@ -32,11 +30,13 @@ export class FormValidator {
     });
 
     this._addInputListeners();
-    this._toggleButton();
   }
 
   //добавка класса на невалидный инпут
   _handleFormInput(event) {
+
+
+
     //находим инпут, на котором сработало событие
     this._input = event.target;
     this._inputId = this._input.id;
@@ -57,9 +57,7 @@ export class FormValidator {
 
   //ф-ция блокирующая кнопку
   _toggleButton() {
-    this._buttonSubmit = this._formElement.querySelector(
-      this._config.buttonSelector
-    );
+    this._buttonSubmit = this._formElement.querySelector(this._config.buttonSelector);
     this._isFormValid = this._formElement.checkValidity();
 
     //если форма невалидна - дизейбл включить
@@ -81,8 +79,9 @@ export class FormValidator {
     this._inputList.forEach((item) => {
       //вводим текст в инпут и слушатель срабатывает при каждой букве
       //включается ф-ция которая добавляет класс на невалидный инпут
-      item.addEventListener("input", (event) => {
-        this._handleFormInput(event);
+      item.addEventListener("input", (item) => {
+        this._handleFormInput(item);
+        this._toggleButton();
       });
     });
   }

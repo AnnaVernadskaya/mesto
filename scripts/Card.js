@@ -1,41 +1,35 @@
-import { initialCards } from "./constants.js";
-import { openPopupPhoto } from "./index.js";
-
-// создаём класс, который хранит разметку карточки и наполняет его содержимым
 export class Card {
-  //в конструкторе - динамические данные, для каждого экземпляра свои
-  constructor(name, link, openPopupPhoto) {
-    //link(картинка) и name(текст)
-    //- это приватные поля, они нужны только внутри класса
+  constructor(name, link, openPopupPhoto, selectorTemplate) {
     this._name = name;
     this._link = link;
     this._openPopupPhoto = openPopupPhoto;
+    this._selectorTemplate = selectorTemplate;
   }
 
   //Задача метода _getTemplate — вернуть разметку карточки через return
   _getTemplate() {
     //забираем разметку из html и клонируем элемент
     const cardElement = document
-      .querySelector("#galleryCards")
-      .content.querySelector(".gallery__card")
+      .querySelector(this._selectorTemplate)
+      .content
+      .querySelector(".gallery__card")
       .cloneNode(true);
 
     //вернём ДОМ-элемент карточки
     return cardElement;
   }
 
-  // метод generateCard подготовит карточку к публикации
-  //он добавит данные в разметку
-  //метод-публичный, чтобы возвращать готовые карточки внешним функциям
+  // метод generateCard подготовит карточку к публикации -он добавит данные в разметку
   generateCard() {
     // Запишем разметку в приватное поле _element.
-    // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector(".gallery__img");
+    this._placeText = this._element.querySelector(".gallery__place");
 
     //добавим данные
-    this._element.querySelector(".gallery__img").src = this._link;
-    this._element.querySelector(".gallery__place").textContent = this._name;
-    this._element.querySelector(".gallery__img").alt = this._name;
+    this._cardImage.src = this._link;
+    this._placeText.textContent = this._name;
+    this._cardImage.alt = this._name;
 
     this._setEventListeners();
 
@@ -72,9 +66,7 @@ export class Card {
   }
 
   _deleteCardButton() {
-    this._element
-      .querySelector(".gallery__delete-card")
-      .closest(".gallery__card")
-      .remove();
+    this._element.remove();
+    this._element = null;
   }
 }
