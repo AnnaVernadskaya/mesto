@@ -44,6 +44,8 @@ const inputLink = document.querySelector("#popup-input-link");
 
 const selectorTemplate = "#galleryCards";
 
+export { selectorTemplate };
+
 //функция для открытия попапа с фото
 function openPopupPhoto(name, link) {
   popupPhotoImg.src = link;
@@ -53,7 +55,7 @@ function openPopupPhoto(name, link) {
   openPopup(popupPhoto);
 }
 
-export { openPopupPhoto, selectorTemplate };
+export { openPopupPhoto };
 
 //функция, добавляющая модификатор в html -открывание попапа
 //общая функция
@@ -141,8 +143,8 @@ function handleCardSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
 
-//  evt.submitter.disabled = true;
-//  evt.submitter.classList.add("popup__button-save_disabled");
+  evt.submitter.disabled = true;
+  evt.submitter.classList.add("popup__button-save_disabled");
 
   //наполняем содержимым из инпутов
   renderCard({ name: inputPlace.value, link: inputLink.value });
@@ -178,7 +180,7 @@ initialCards.forEach((item) => {
 
 function addCard(item) {
   //Создадим экземпляр карточки
-  const card = new Card(item.name, item.link, openPopupPhoto);
+  const card = new Card(item.name, item.link, openPopupPhoto, selectorTemplate);
   //Создаём карточку и возвращаем наружу
   return card.generateCard();
 }

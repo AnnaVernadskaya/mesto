@@ -5,20 +5,18 @@ export class Card {
     this._openPopupPhoto = openPopupPhoto;
     this._selectorTemplate = selectorTemplate;
   }
-
   //Задача метода _getTemplate — вернуть разметку карточки через return
   _getTemplate() {
     //забираем разметку из html и клонируем элемент
+
     const cardElement = document
       .querySelector(this._selectorTemplate)
       .content
       .querySelector(".gallery__card")
       .cloneNode(true);
-
     //вернём ДОМ-элемент карточки
     return cardElement;
   }
-
   // метод generateCard подготовит карточку к публикации -он добавит данные в разметку
   generateCard() {
     // Запишем разметку в приватное поле _element.
