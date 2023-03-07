@@ -7,11 +7,6 @@ export class FormValidator {
     );
   }
 
-  //отключаем стандартную отправку формы
-  _disableSubmit(event) {
-    event.preventDefault();
-  }
-
   //функция, которая валидирует форму
   enableValidation() {
     this._addInputListeners();
@@ -66,15 +61,16 @@ export class FormValidator {
       this._formElement.querySelectorAll(this._config.inputSelector)
     );
 
-    //событие инпут у формы
-    this._formElement.addEventListener("input", () => {
-      this._toggleButton();
+    this._formElement.addEventListener(('submit'), (evt) =>{
+        evt.submitter.disabled = true;
+        evt.submitter.classList.add('popup__button-save_disabled');
     });
 
     //проходимся по инпутам и навешиваем обработчик, в котором запускаятся функция, проверяет валидность и добавляет-убирает класс
     this._inputList.forEach((item) => {
-      item.addEventListener("input", () => {
+      item.addEventListener('input', () => {
         this._handleFormInput(item);
+        this._toggleButton();
       });
     });
   }

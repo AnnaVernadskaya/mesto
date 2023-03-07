@@ -1,13 +1,13 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { initialCards } from "./constants.js";
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { initialCards } from './constants.js';
 
 const formValidationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  inputErrorClass: "popup__input_type_error",
-  buttonSelector: ".popup__button-save",
-  buttonDisabledClass: "popup__button-save_disabled",
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  inputErrorClass: 'popup__input_type_error',
+  buttonSelector: '.popup__button-save',
+  buttonDisabledClass: 'popup__button-save_disabled',
 };
 
 //ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА
@@ -142,15 +142,11 @@ const renderCard = (item) => {
 function handleCardSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
-
-  evt.submitter.disabled = true;
-  evt.submitter.classList.add("popup__button-save_disabled");
-
+ // evt.submitter.disabled = true;
+ // evt.submitter.classList.add("popup__button-save_disabled");
   //наполняем содержимым из инпутов
   renderCard({ name: inputPlace.value, link: inputLink.value });
 
-  //inputPlace.value = '';
-  //inputLink.value = '';
   evt.target.reset();
 
   closePopup(popupCards);
@@ -167,11 +163,11 @@ const validationFormProfile = new FormValidator(
 );
 validationFormProfile.enableValidation();
 
-const ValidationFormCards = new FormValidator(
+const validationFormCards = new FormValidator(
   formValidationConfig,
   formCardPopup
 );
-ValidationFormCards.enableValidation();
+validationFormCards.enableValidation();
 
 initialCards.forEach((item) => {
   // Добавляем в DOM

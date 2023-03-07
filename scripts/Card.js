@@ -12,7 +12,7 @@ export class Card {
     const cardElement = document
       .querySelector(this._selectorTemplate)
       .content
-      .querySelector(".gallery__card")
+      .querySelector('.gallery__card')
       .cloneNode(true);
     //вернём ДОМ-элемент карточки
     return cardElement;
@@ -21,8 +21,9 @@ export class Card {
   generateCard() {
     // Запишем разметку в приватное поле _element.
     this._element = this._getTemplate();
-    this._cardImage = this._element.querySelector(".gallery__img");
-    this._placeText = this._element.querySelector(".gallery__place");
+    this._cardImage = this._element.querySelector('.gallery__img');
+    this._placeText = this._element.querySelector('.gallery__place');
+    this._buttonLike = this._element.querySelector('.gallery__button-like');
 
     //добавим данные
     this._cardImage.src = this._link;
@@ -37,30 +38,27 @@ export class Card {
 
   //лайк
   _setEventListeners() {
-    this._element
-      .querySelector(".gallery__button-like")
-      .addEventListener("click", () => {
+    this._buttonLike
+      .addEventListener('click', () => {
         this._toggleButtonLike();
       });
     //удаление
     this._element
-      .querySelector(".gallery__delete-card")
-      .addEventListener("click", () => {
+      .querySelector('.gallery__delete-card')
+      .addEventListener('click', () => {
         this._deleteCardButton();
       });
 
     //открытие попапа фото
     this._element
-      .querySelector(".gallery__img")
-      .addEventListener("click", () => {
+      .querySelector('.gallery__img')
+      .addEventListener('click', () => {
         this._openPopupPhoto(this._name, this._link);
       });
   }
 
   _toggleButtonLike() {
-    this._element
-      .querySelector(".gallery__button-like")
-      .classList.toggle("gallery__button-like_active");
+    this._buttonLike.classList.toggle('gallery__button-like_active');
   }
 
   _deleteCardButton() {
