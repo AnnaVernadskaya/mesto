@@ -1,3 +1,6 @@
+//Экземпляр класса Card создаётся для каждой карточки. Класс соответствует описанию из проектной работы.
+
+
 export class Card {
   constructor(name, link, openPopupPhoto, selectorTemplate) {
     this._name = name;

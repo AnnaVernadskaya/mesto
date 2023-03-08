@@ -1,3 +1,6 @@
+//Экземпляр класса FormValidator создаётся для каждой проверяемой формы. Класс соответствует описанию из проектной работы.
+
+
 export class FormValidator {
   constructor(config, formElement) {
     this._config = config;
@@ -10,7 +13,7 @@ export class FormValidator {
   //функция, которая валидирует форму
   enableValidation() {
     this._addInputListeners();
-    this._toggleButton();
+    this.toggleButton();
   }
 
   //показывает сообщение об ошибке
@@ -43,7 +46,7 @@ export class FormValidator {
   };
 
   //ф-ция блокирующая кнопку
-  _toggleButton() {
+  toggleButton() {
     this._isFormValid = this._formElement.checkValidity();
 
     //если форма невалидна - дизейбл включить
@@ -61,16 +64,11 @@ export class FormValidator {
       this._formElement.querySelectorAll(this._config.inputSelector)
     );
 
-    this._formElement.addEventListener(('submit'), (evt) =>{
-        evt.submitter.disabled = true;
-        evt.submitter.classList.add('popup__button-save_disabled');
-    });
-
     //проходимся по инпутам и навешиваем обработчик, в котором запускаятся функция, проверяет валидность и добавляет-убирает класс
     this._inputList.forEach((item) => {
       item.addEventListener('input', () => {
         this._handleFormInput(item);
-        this._toggleButton();
+        this.toggleButton();
       });
     });
   }

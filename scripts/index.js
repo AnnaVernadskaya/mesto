@@ -12,37 +12,37 @@ const formValidationConfig = {
 
 //ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА
 //выбираем попапы - профиль, карточки, фото
-const popupProfile = document.querySelector(".popup_section_profile");
-const popupCards = document.querySelector(".popup_section_cards");
-const popupPhoto = document.querySelector(".popup_section_photo");
+const popupProfile = document.querySelector('.popup_section_profile');
+const popupCards = document.querySelector('.popup_section_cards');
+const popupPhoto = document.querySelector('.popup_section_photo');
 //выбираем кнопки, открывающую попап на странице - профиль, карточки
-const popupProfileOpenButton = document.querySelector(".profile__button-edit");
-const popupCardsOpenButton = document.querySelector(".profile__button-plus");
+const popupProfileOpenButton = document.querySelector('.profile__button-edit');
+const popupCardsOpenButton = document.querySelector('.profile__button-plus');
 //находим форму в попапе профиля
-const formProfilePopup = document.forms["profileForm"];
+const formProfilePopup = document.forms['profileForm'];
 //находим поля формы
-const nameInput = document.querySelector(".popup__input_type_name");
-const jobInput = document.querySelector(".popup__input_type_job");
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
 // Выбераем элементы, куда должны быть вставлены значения полей
-const profileName = document.querySelector(".profile__name");
-const profileAboutMe = document.querySelector(".profile__about-me");
+const profileName = document.querySelector('.profile__name');
+const profileAboutMe = document.querySelector('.profile__about-me');
 //открытое фото и подпись к нему
-const popupPhotoImg = popupPhoto.querySelector(".popup__image");
-const popupPhotoFiqcaption = popupPhoto.querySelector(".popup__figcaption");
+const popupPhotoImg = popupPhoto.querySelector('.popup__image');
+const popupPhotoFiqcaption = popupPhoto.querySelector('.popup__figcaption');
 //находим все закрывающие кнопки-крестики
-const closeButtons = document.querySelectorAll(".popup__close");
+const closeButtons = document.querySelectorAll('.popup__close');
 // получаем элемент темплейт
 
 //делаем константу галлереи, куда добавить карточки
-const gallery = document.querySelector(".gallery__cards");
+const gallery = document.querySelector('.gallery__cards');
 //попап добавления новой карточки и инпуты в форме
-const formCardPopup = document.forms["cardForm"];
-const inputPlace = document.querySelector("#popup-input-place");
-const inputLink = document.querySelector("#popup-input-link");
+const formCardPopup = document.forms['cardForm'];
+const inputPlace = document.querySelector('#popup-input-place');
+const inputLink = document.querySelector('#popup-input-link');
 
 
 
-const selectorTemplate = "#galleryCards";
+const selectorTemplate = '#galleryCards';
 
 export { selectorTemplate };
 
@@ -60,36 +60,36 @@ export { openPopupPhoto };
 //функция, добавляющая модификатор в html -открывание попапа
 //общая функция
 const openPopup = function (popup) {
-  popup.classList.add("popup_is-opened");
+  popup.classList.add('popup_is-opened');
 
-  document.addEventListener("keydown", closePopupByEsc);
+  document.addEventListener('keydown', closePopupByEsc);
 };
 
 //открываем попап профиль
-popupProfileOpenButton.addEventListener("click", function () {
+popupProfileOpenButton.addEventListener('click', function () {
   openPopup(popupProfile);
 
   nameInput.value = profileName.textContent;
   jobInput.value = profileAboutMe.textContent;
 });
 
-popupCardsOpenButton.addEventListener("click", function () {
+popupCardsOpenButton.addEventListener('click', function () {
   openPopup(popupCards);
 });
 
 //функция закрывающая попап
 // находим все крестики проекта по универсальному селектору closeButtons=.popup__close
 const closePopup = function (popup) {
-  popup.classList.remove("popup_is-opened");
+  popup.classList.remove('popup_is-opened');
 
-  document.removeEventListener("keydown", closePopupByEsc);
+  document.removeEventListener('keydown', closePopupByEsc);
 };
 
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап
-  const popup = button.closest(".popup");
+  const popup = button.closest('.popup');
   // устанавливаем обработчик закрытия на крестик
-  button.addEventListener("click", () => closePopup(popup));
+  button.addEventListener('click', () => closePopup(popup));
 });
 
 // сохранение изменений в форме профиля
@@ -108,7 +108,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
-formProfilePopup.addEventListener("submit", handleProfileFormSubmit);
+formProfilePopup.addEventListener('submit', handleProfileFormSubmit);
 
 // закрытие попапа по оверлею
 const closePopupByClickOnOverlay = function (evt) {
@@ -120,14 +120,14 @@ const closePopupByClickOnOverlay = function (evt) {
   }
 };
 
-popupProfile.addEventListener("click", closePopupByClickOnOverlay);
-popupCards.addEventListener("click", closePopupByClickOnOverlay);
-popupPhoto.addEventListener("click", closePopupByClickOnOverlay);
+popupProfile.addEventListener('click', closePopupByClickOnOverlay);
+popupCards.addEventListener('click', closePopupByClickOnOverlay);
+popupPhoto.addEventListener('click', closePopupByClickOnOverlay);
 
 //закрытие попапа на esc
 function closePopupByEsc(evt) {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector(".popup_is-opened"));
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_is-opened'));
   }
 }
 
@@ -149,12 +149,14 @@ function handleCardSubmit(evt) {
 
   evt.target.reset();
 
+  validationFormCards.toggleButton();
+
   closePopup(popupCards);
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formCardPopup.addEventListener("submit", handleCardSubmit);
+formCardPopup.addEventListener('submit', handleCardSubmit);
 
 //экзепмляры класса валидации для каждой формы
 const validationFormProfile = new FormValidator(
@@ -171,7 +173,7 @@ validationFormCards.enableValidation();
 
 initialCards.forEach((item) => {
   // Добавляем в DOM
-  document.querySelector(".gallery__cards").append(addCard(item));
+  document.querySelector('.gallery__cards').append(addCard(item));
 });
 
 function addCard(item) {
